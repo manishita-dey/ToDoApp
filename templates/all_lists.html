@@ -1,0 +1,75 @@
+
+
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>ToDoApp- All Lists</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../static/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="{{url_for('home')}}">ToDoApp</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="{{url_for('home')}}">Home</a></li>
+
+							<li>{{current_user.name}}</li>
+							<li><a href="{{url_for('logout')}}" class="button btn-danger">Logout</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>All Your ToDo Lists:</h2>
+<!--							<p>Ipsum dolor feugiat aliquam tempus sed magna lorem consequat accumsan</p>-->
+						</header>
+
+						<!-- Text -->
+							<section>
+				<ul>
+								{% for list in lists %}
+								<h3><li><a href="{{url_for('show_list', list_id = list.id)}}">{{list.name}}</a>  <a href="{{url_for('delete_list',list_id = list.id)}}">🗑</a></li></h3>
+								{% endfor %}
+				</ul>
+							</section>
+
+						<!-- Lists -->
+
+
+					</div>
+				</div>
+		<!--			Footer-->
+			<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; ManishitaDey. All rights reserved.</li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../static/assets/js/jquery.min.js"></script>
+			<script src="../static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="../static/assets/js/jquery.dropotron.min.js"></script>
+			<script src="../static/assets/js/jquery.scrollex.min.js"></script>
+			<script src="../static/assets/js/browser.min.js"></script>
+			<script src="../static/assets/js/breakpoints.min.js"></script>
+			<script src="../static/assets/js/util.js"></script>
+			<script src="../static/assets/js/main.js"></script>
+
+	</body>
+</html>

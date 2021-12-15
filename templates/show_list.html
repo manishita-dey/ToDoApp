@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>ToDoApp - List</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+		<!--		Bootstrap css-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="../static/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../static/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="{{url_for('home')}}">ToDoApp</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="{{url_for('home')}}">Home</a></li>
+
+							<li>{{current_user.name}}</li>
+							<li><a href="{{url_for('logout')}}" class="button btn-danger">Logout</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<form action="{{ url_for('edit_list_name', id = list_id) }}" method="post">
+                				<h2 contenteditable="true">{{list_name}}</h2>
+								<input type="text" name="list_name" placeholder = 'Edit List name'/>
+                				<input type="submit" value = 'Save'/>
+            				</form>
+						</header>
+
+						<!-- Content -->
+							<section id="content">
+
+
+											<form class="item_form" method="post" action="{{url_for('add_item', id =list_id)}}">
+											  <input type="text" class = "form_input no-border" name = "item_name" placeholder="Add New Item Here..."/>
+											  <button class = "form_input_btn btn btn-secondary">Add Item</button>
+											</form>
+
+								<div>
+									{% if incomplete_items != [] %}
+									<h4>Remaining Tasks To Do:</h4>
+									{% endif %}
+
+									{% for item in incomplete_items%}
+									<li>{{item.desc}} <a href="{{url_for('completed_item', item_id = item.id)}}">​✔️</a></li>
+									{% endfor %}
+									<br>
+									{% if complete_items != [] %}
+									<h4> Tasks Done:</h4>
+									{% endif %}
+
+									{% for item in complete_items %}
+									<li>{{item.desc}}</li>
+									{% endfor %}
+								</div>
+
+							</section>
+
+					</div>
+				</div>
+
+<!--			Footer-->
+			<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; ManishitaDey. All rights reserved.</li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../static/assets/js/jquery.min.js"></script>
+			<script src="../static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="../static/assets/js/jquery.dropotron.min.js"></script>
+			<script src="../static/assets/js/jquery.scrollex.min.js"></script>
+			<script src="../static/assets/js/browser.min.js"></script>
+			<script src="../static/assets/js/breakpoints.min.js"></script>
+			<script src="../static/assets/js/util.js"></script>
+			<script src="../static/assets/js/main.js"></script>
+
+	<!--	Bootstrap Script-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+	</body>
+</html>
