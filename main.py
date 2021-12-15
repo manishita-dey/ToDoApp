@@ -14,8 +14,8 @@ from sqlalchemy.orm import relationship
 app = Flask(__name__)
 ckeditor = CKEditor(app)
 
-SECRET_KEY = 'd3f0a1f9b1b4a23495290b8de309d913'
-app.config['SECRET_KEY'] = SECRET_KEY
+
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap(app)
 
 # CONNECTING TO DATABASE
