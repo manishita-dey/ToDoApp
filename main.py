@@ -61,7 +61,7 @@ class Item(db.Model):
 
 db.create_all()
 
-print(SECRET_KEY)
+
 @app.route('/')
 def home():
     return render_template('index.html')
