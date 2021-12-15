@@ -59,7 +59,7 @@ class Item(db.Model):
     list = relationship('List', back_populates = 'items')
 
 
-db.create_all()
+# db.create_all()
 
 
 @app.route('/')
